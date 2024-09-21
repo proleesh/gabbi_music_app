@@ -50,7 +50,6 @@ class _MVPlayerScreenState extends State<MVPlayerScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // 播放/暂停切换
           setState(() {
             _controller.value.isPlaying
                 ? _controller.pause()
