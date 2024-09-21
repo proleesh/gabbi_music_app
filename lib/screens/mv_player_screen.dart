@@ -17,10 +17,16 @@ class _MVPlayerScreenState extends State<MVPlayerScreen> {
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.network(widget.mvUrl);
-    _initializeVideoPlayerFuture = _controller.initialize();
-    _controller.setLooping(true);
-    _controller.play();
+    print('Playing video from URL: ${widget.mvUrl}');
+
+    try {
+      _controller = VideoPlayerController.network(widget.mvUrl);
+      _initializeVideoPlayerFuture = _controller.initialize();
+      _controller.setLooping(true);
+      _controller.play();
+    } catch (e) {
+      print('비디오 초기화 중 오류 발생: $e');
+    }
   }
 
   @override
@@ -33,7 +39,7 @@ class _MVPlayerScreenState extends State<MVPlayerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('MV Player'),
+        title: Text('Gabbi Watch'),
       ),
       body: FutureBuilder(
         future: _initializeVideoPlayerFuture,
@@ -43,6 +49,8 @@ class _MVPlayerScreenState extends State<MVPlayerScreen> {
               aspectRatio: _controller.value.aspectRatio,
               child: VideoPlayer(_controller),
             );
+          } else if (snapshot.hasError) {
+            return Center(child: Text('비디오를 로드하는 중 오류가 발생했습니다.'));
           } else {
             return Center(child: CircularProgressIndicator());
           }
@@ -51,9 +59,11 @@ class _MVPlayerScreenState extends State<MVPlayerScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           setState(() {
-            _controller.value.isPlaying
-                ? _controller.pause()
-                : _controller.play();
+            if (_controller.value.isPlaying) {
+              _controller.pause();
+            } else {
+              _controller.play();
+            }
           });
         },
         child: Icon(
