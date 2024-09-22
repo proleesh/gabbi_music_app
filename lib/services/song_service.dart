@@ -15,7 +15,7 @@ class SongService {
         headers: {'Content-Type': 'application/json; charset=UTF-8'});
 
     if (response.statusCode == 200) {
-      List<dynamic> body = jsonDecode(response.body);
+      List<dynamic> body = jsonDecode(utf8.decode(response.bodyBytes));
       return body.map((json) => Song.fromJson(json)).toList();
     } else {
       throw Exception('음악을 불러오지를 못했습니다.');

@@ -15,7 +15,7 @@ class MVService {
         headers: {'Content-Type': 'application/json; charset=UTF-8'});
 
     if (response.statusCode == 200) {
-      return MV.fromJson(jsonDecode(response.body));
+      return MV.fromJson(jsonDecode(utf8.decode(response.bodyBytes)));
     } else {
       throw Exception('MV를 불러오지 못했습니다.');
     }
