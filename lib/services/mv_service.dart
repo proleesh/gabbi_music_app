@@ -1,19 +1,18 @@
 import 'dart:convert';
-
-import 'package:gabbi_music_app/models/mv.dart';
 import 'package:http/http.dart' as http;
+import 'package:gabbi_music_app/models/mv.dart';
 
 class MVService {
-  final String baseUrl = 'http://localhost:8080/api/mvs';
+  final String baseUrl = 'http://localhost:8080/api/mvs'; // 서버 URL
 
-  Future<List<MV>> fetchMVs() async {
-    final response = await http.get(Uri.parse(baseUrl));
+  // ID로 특정 MV 데이터를 가져오는 메서드
+  Future<MV> fetchMVById(int id) async {
+    final response = await http.get(Uri.parse('$baseUrl/$id'));
 
     if (response.statusCode == 200) {
-      List<dynamic> body = jsonDecode(response.body);
-      return body.map((json) => MV.fromJson(json)).toList();
+      return MV.fromJson(jsonDecode(response.body));
     } else {
-      throw Exception('뮤비를 불러오지를 못했습니다.');
+      throw Exception('MV를 불러오지 못했습니다.');
     }
   }
 }

@@ -61,17 +61,15 @@ class _SongListScreenState extends State<SongListScreen> {
   void _playAudio(Song song) async {
     try {
       if (_isPaused && _currentSong == song) {
-        // 곡이 일시정지 상태일 경우 재개
         _resumeAudio();
       } else {
-        // 새로운 곡을 재생할 때만 URL을 설정
         await _audioPlayer.setUrl(song.audioUrl);
         await _audioPlayer.play();
         setState(() {
           _isPaused = false;
-          _currentSong?.isPlaying = false; // 이전 노래 재생 종료
+          _currentSong?.isPlaying = false;
           _currentSong = song;
-          _currentSong?.isPlaying = true; // 현재 노래 재생 시작
+          _currentSong?.isPlaying = true;
           for (var s in songs) {
             s.isPlaying = s == song;
           }
@@ -88,7 +86,7 @@ class _SongListScreenState extends State<SongListScreen> {
     try {
       await _audioPlayer.pause();
       setState(() {
-        _isPaused = true; // 일시정지 상태 설정
+        _isPaused = true;
         _currentSong?.isPlaying = false;
       });
     } catch (e) {
@@ -100,7 +98,7 @@ class _SongListScreenState extends State<SongListScreen> {
     try {
       await _audioPlayer.play();
       setState(() {
-        _isPaused = false; // 재개 상태로 변경
+        _isPaused = false;
         _currentSong?.isPlaying = true;
       });
     } catch (e) {
@@ -108,11 +106,12 @@ class _SongListScreenState extends State<SongListScreen> {
     }
   }
 
-  void _playMv(String mvUrl) {
+  void _playMv(int mvId) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => MVPlayerScreen(mvUrl: mvUrl),
+        builder: (context) =>
+            MVPlayerScreen(mvId: mvId), // mvId를 MVPlayerScreen으로 전달
       ),
     );
   }
@@ -201,7 +200,7 @@ class _SongListScreenState extends State<SongListScreen> {
                       IconButton(
                         icon: Icon(Icons.play_circle_fill),
                         onPressed: () {
-                          _playMv(song.mv!.mvUrl);
+                          _playMv(song.mv!.id); // MV의 ID를 전달
                         },
                       ),
                   ],
