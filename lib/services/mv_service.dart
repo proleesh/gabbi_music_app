@@ -11,7 +11,8 @@ class MVService {
 
   // ID로 특정 MV 데이터를 가져오는 메서드
   Future<MV> fetchMVById(int id) async {
-    final response = await http.get(Uri.parse('$baseUrl/$id'));
+    final response = await http.get(Uri.parse('$baseUrl/$id'),
+        headers: {'Content-Type': 'application/json; charset=UTF-8'});
 
     if (response.statusCode == 200) {
       return MV.fromJson(jsonDecode(response.body));

@@ -11,7 +11,8 @@ class SongService {
   final String baseUrl = 'http://localhost:8080/api/songs';
 
   Future<List<Song>> fetchSongs() async {
-    final response = await http.get(Uri.parse(baseUrl));
+    final response = await http.get(Uri.parse(baseUrl),
+        headers: {'Content-Type': 'application/json; charset=UTF-8'});
 
     if (response.statusCode == 200) {
       List<dynamic> body = jsonDecode(response.body);
