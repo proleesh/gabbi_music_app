@@ -3,6 +3,10 @@ import 'dart:convert';
 import 'package:gabbi_music_app/models/song.dart';
 import 'package:http/http.dart' as http;
 
+/**
+ * author: Sung-Hyuk Lee
+ * date: 2024.9.22
+ */
 class SongService {
   final String baseUrl = 'http://localhost:8080/api/songs';
 

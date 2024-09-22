@@ -1,3 +1,7 @@
+/**
+ * author: Sung-Hyuk Lee
+ * date: 2024.9.22
+ */
 class MV {
   final int id;
   final String mvUrl;

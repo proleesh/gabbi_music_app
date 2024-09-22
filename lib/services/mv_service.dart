@@ -2,6 +2,10 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:gabbi_music_app/models/mv.dart';
 
+/**
+ * author: Sung-Hyuk Lee
+ * date: 2024.9.22
+ */
 class MVService {
   final String baseUrl = 'http://localhost:8080/api/mvs'; // 서버 URL
 

@@ -3,6 +3,10 @@ import 'package:video_player/video_player.dart';
 import 'package:gabbi_music_app/services/mv_service.dart'; // MVService import
 import 'package:gabbi_music_app/models/mv.dart'; // MV 모델 import
 
+/**
+ * author: Sung-Hyuk Lee
+ * date: 2024.9.22
+ */
 class MVPlayerScreen extends StatefulWidget {
   final int mvId; // MV의 ID를 받아와서 해당 MV URL을 가져옴
 

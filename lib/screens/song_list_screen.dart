@@ -4,6 +4,10 @@ import '../models/song.dart';
 import '../services/song_service.dart';
 import 'mv_player_screen.dart';
 
+/**
+ * author: Sung-Hyuk Lee
+ * date: 2024.9.20 ~ 2024.9.22
+ */
 class SongListScreen extends StatefulWidget {
   @override
   _SongListScreenState createState() => _SongListScreenState();

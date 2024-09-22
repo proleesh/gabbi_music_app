@@ -1,5 +1,9 @@
 import 'mv.dart';
 
+/**
+ * author: Sung-Hyuk Lee
+ * date: 2024.9.22
+ */
 class Song {
   final int id;
   final String title;
